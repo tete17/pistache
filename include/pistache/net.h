@@ -154,7 +154,7 @@ private:
 class Error : public std::runtime_error {
 public:
     Error(const char* message);
-    Error(std::string message);
+    Error(const std::string& message);
     static Error system(const char* message);
 };
 

@@ -15,9 +15,6 @@ Handler::Handler()
 {
 }
 
-Handler::~Handler()
-{ }
-
 void
 Handler::associateTransport(Transport* transport) {
     transport_ = transport;

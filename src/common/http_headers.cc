@@ -46,12 +46,6 @@ Registry& Registry::instance() {
     return instance;
 }
 
-Registry::Registry()
-{}
-
-Registry::~Registry()
-{}
-
 void
 Registry::registerHeader(const std::string& name, Registry::RegistryFunc func)
 {

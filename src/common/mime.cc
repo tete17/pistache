@@ -129,7 +129,7 @@ MediaType::parseRaw(const char* str, size_t len) {
         MIME_TYPES
 #undef TYPE
         raise("Unknown Media Type");
-    } while (0);
+    } while (false);
 
     top_ = top;
 

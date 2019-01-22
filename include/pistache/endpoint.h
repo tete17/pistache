@@ -30,7 +30,7 @@ public:
         size_t maxPayload_;
         Options();
     };
-    Endpoint();
+    Endpoint() = default;
     Endpoint(const Address& addr);
 
     template<typename... Args>

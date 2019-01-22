@@ -190,14 +190,14 @@ private:
         else {
             std::unordered_map<std::shared_ptr<Handler>, std::vector<Polling::Event>> fdHandlers;
 
-            for (auto& event: events) {
+            for (const auto& event: events) {
                 size_t index;
                 uint64_t value;
 
                 std::tie(index, value) = decodeTag(event.tag);
                 auto handler = handlers_[index];
                 auto& evs = fdHandlers[handler];
-                evs.push_back(std::move(event));
+                evs.push_back(event);
             }
 
             for (auto& data: fdHandlers) {

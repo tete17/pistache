@@ -387,7 +387,7 @@ Router::del(const std::string& resource, Route::Handler handler) {
 
 void
 Router::options(const std::string& resource, Route::Handler handler) {
-    addRoute(Http::Method::Options, resource, handler);
+    addRoute(Http::Method::Options, resource, std::move(handler));
 }
 
 void
@@ -412,7 +412,7 @@ Router::addNotFoundHandler(Route::Handler handler) {
 void
 Router::invokeNotFoundHandler(const Http::Request &req, Http::ResponseWriter resp) const
 {
-    notFoundHandler(Rest::Request(std::move(req), std::vector<TypedParam>(), std::vector<TypedParam>()), std::move(resp));
+    notFoundHandler(Rest::Request(req, std::vector<TypedParam>(), std::vector<TypedParam>()), std::move(resp));
 }
 
 Route::Status

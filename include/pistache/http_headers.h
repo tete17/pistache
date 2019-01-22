@@ -150,8 +150,8 @@ public:
     bool isRegistered(const std::string& name);
 
 private:
-    Registry();
-    ~Registry();
+    Registry() = default;
+    ~Registry() = default;
 
     using RegistryFunc = std::function<std::unique_ptr<Header>()>;
     using RegistryStorageType = std::unordered_map<

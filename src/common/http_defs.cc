@@ -120,8 +120,6 @@ FullDate::write(std::ostream& os, Type type) const
     case Type::AscTime:
         date::to_stream(os, "%a %b %d %T %Y", date_);
         break;
-    default:
-        std::runtime_error("Invalid use of FullDate::write");
     }
 }
 

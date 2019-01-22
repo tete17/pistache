@@ -43,9 +43,6 @@ Endpoint::Options::maxPayload(size_t val) {
     return *this;
 }
 
-Endpoint::Endpoint()
-{ }
-
 Endpoint::Endpoint(const Address& addr)
     : listener(addr)
 { }

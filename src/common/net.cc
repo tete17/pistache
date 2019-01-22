@@ -90,12 +90,12 @@ Ipv6::Ipv6(uint16_t a, uint16_t b, uint16_t c, uint16_t d, uint16_t e, uint16_t 
 
 Ipv6
 Ipv6::any() {
-    return Ipv6(0, 0, 0, 0, 0, 0, 0, 0);
+    return {0, 0, 0, 0, 0, 0, 0, 0};
 }
 
 Ipv6
 Ipv6::loopback() {
-    return Ipv6(0, 0, 0, 0, 0, 0, 0, 1);
+    return {0, 0, 0, 0, 0, 0, 0, 1};
 }
 
 std::string
@@ -164,16 +164,15 @@ Address::Address()
 
 Address::Address(std::string host, Port port)
 {   
-    std::string addr = host;
-    addr.append(":");
-    addr.append(port.toString());
-    init(std::move(addr));
+    host.append(":");
+    host.append(port.toString());
+    init(host);
 }
 
 
 Address::Address(std::string addr)
 {
-    init(std::move(addr));
+    init(addr);
 }
 
 Address::Address(const char* addr)
@@ -241,7 +240,7 @@ Address::init(const std::string& addr) {
             char buff6[INET6_ADDRSTRLEN+1];
             memcpy(buff6, host_.c_str(), INET6_ADDRSTRLEN);
             inet_pton(AF_INET6, buff6, &(addr6.s6_addr16));
-        } catch (std::runtime_error) {
+        } catch (const std::runtime_error&) {
             throw std::invalid_argument("Invalid IPv6 address");
         }
         pos++;
@@ -260,7 +259,7 @@ Address::init(const std::string& addr) {
             char buff[INET_ADDRSTRLEN+1];
             memcpy(buff, host_.c_str(), INET_ADDRSTRLEN);
             inet_pton(AF_INET, buff, &(addr));
-        } catch (std::runtime_error) {
+        } catch (const std::runtime_error&) {
             throw std::invalid_argument("Invalid IPv4 address");
         }
     }
@@ -278,8 +277,8 @@ Error::Error(const char* message)
     : std::runtime_error(message)
 { }
 
-Error::Error(std::string message)
-    : std::runtime_error(std::move(message))
+Error::Error(const std::string& message)
+    : std::runtime_error(message)
 { }
 
 Error

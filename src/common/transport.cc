@@ -306,7 +306,7 @@ Transport::armTimerMsImpl(TimerEntry entry) {
         spec.it_value.tv_nsec = 0;
     }
 
-    int res = timerfd_settime(entry.fd, 0, &spec, 0);
+    int res = timerfd_settime(entry.fd, 0, &spec, nullptr);
     if (res == -1) {
         entry.deferred.reject(Pistache::Error::system("Could not set timer time"));
         return;
